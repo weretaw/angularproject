@@ -1,0 +1,55 @@
+<div *ngIf="HaidShowEditUser" class="container">
+<h1>Edit user</h1>
+<form #trvForm="ngForm" (ngSubmit)="SubmitHandler(EditUser)">
+<div class="form-group">
+<label for="idName">Name</label>
+<input id="idName" name="name" type="text"
+class="form-control" required
+[(ngModel)]="ChangeEditForm.Name" #trvName="ngModel">
+<div *ngIf="trvName.errors && (trvName.dirty || trvName.touched)"
+class="alert alert-danger">
+<div [hidden]="!trvName.errors.required">
+Name is required
+</div>
+</div>
+</div>
+<div class="form-group">
+<label for="idEmail">Email</label>
+<input id="idEmail" name="email" type="email"
+class="form-control" required
+[(ngModel)]="ChangeEditForm.Email" #trvEmail="ngModel">
+<div *ngIf="trvEmail.errors && (trvEmail.dirty || trvEmail.touched)"
+class="alert alert-danger">
+<div [hidden]="!trvEmail.errors.required">
+Email is required
+</div>
+</div>
+</div>
+<div class="form-group">
+<label for="idPhone">Phone</label>
+<input id="idPhone" name="phone" type="text"
+class="form-control" required
+[(ngModel)]="ChangeEditForm.Phone" #trvPhone="ngModel">
+</div>
+<div class="form-group">
+<h2>Street</h2>
+<label for="idStreet">Street</label>
+<input id="idStreet" name="street" type="text"
+class="form-control" required
+[(ngModel)]="ChangeEditForm.address.Street" #trvStreet="ngModel">
+</div>
+<div class="form-group">
+<label for="idCity">City</label>
+<input id="idCity" name="City" type="text"
+class="form-control" required
+[(ngModel)]="ChangeEditForm.address.City" #trvCity="ngModel">
+</div>
+<div class="form-group">
+<label for="idZipCode">ZipCode</label>
+<input id="idZipCode" name="zipCode" type="number"
+class="form-control" required
+[(ngModel)]="ChangeEditForm.address.ZipCode" #trvZipCode="ngModel">
+</div>
+<button class="btn btn-primary" (click)="AddUserToArry(trvForm)">Save</button>
+</form>
+</div>

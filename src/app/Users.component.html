@@ -1,0 +1,124 @@
+<button class="btn btn-primary" (click)=AddUserHandelr()>Add User</button>
+<div *ngIf="HaidShowAddUser" class="container">
+    <h1>Add user</h1>
+    <div class="well form horizontal">
+    <form #trvForm="ngForm" (ngSubmit)="SubmitHandler()">
+        <div class="form-group">
+            <label for="idName">Name</label>
+            <input id="idName" name="name" type="text" ngControl="Name" class="form-control" required [(ngModel)]="addusers.name" #trvName="ngModel">
+            <div *ngIf="trvName.errors && (trvName.dirty || trvName.touched)" class="alert alert-danger">
+                <div [hidden]="!trvName.errors.required">
+                    Name is required
+                </div>
+                <div [hidden]="!trvName.errors.Name.valid">
+                    Name is Not Valid!
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="idEmail">Email</label>
+            <input id="idEmail" name="email" type="email" ngControl="Email" class="form-control" required email [(ngModel)]="addusers.email"
+                #trvEmail="ngModel">
+            <div *ngIf="trvEmail.errors && (trvEmail.dirty || trvEmail.touched)" class="alert alert-danger">
+                <div [hidden]="!trvEmail.errors.required">
+                    Email is required
+                </div>
+                <div [hidden]="!trvEmail.errors.email">
+                    Email is Not valid! Example:abc@gmail.com
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="idPhone">Phone</label>
+            <input id="idPhone" name="phone" type="text" ngControl="Phone" class="form-control" required [(ngModel)]="addusers.phone"
+                #trvPhone="ngModel">
+        </div>
+        <div class="form-group">
+            <h2>Address</h2>
+            <label for="idStreet">Street</label>
+            <input id="idStreet" name="street" type="text" ngControl="Street" class="form-control" required [(ngModel)]="addusers.address.street"
+                #trvStreet="ngModel">
+        </div>
+        <div class="form-group">
+            <label for="idCity">City</label>
+            <input id="idCity" name="City" type="text" ngControl="City" class="form-control" required [(ngModel)]="addusers.address.city" #trvCity="ngModel">
+        </div>
+        <div class="form-group">
+            <label for="idZipCode">ZipCode</label>
+            <input id="idZipCode" name="zipcode" type="text" ngControl="ZipCode" class="form-control" required [(ngModel)]="addusers.address.zipcode"
+                #trvZipCode="ngModel">
+        </div>
+        <button  [disabled]="!trvForm.valid" class="btn btn-primary" (click)="AddUserToArry(trvForm)">Save</button>
+    </form>
+    </div>
+</div>
+<!--Edit Form-->
+<div *ngIf="EditUserForm" class="container">
+    <h1>Edit User</h1>
+    <div class="well form horizontal">
+    <form #trvForm="ngForm" (ngSubmit)="SubmitHandler(trvForm)">
+        <div class="form-group">
+            <label for="idName">Name</label>
+            <input id="idName" name="name" type="text" class="form-control" required [(ngModel)]="Ausers.name" #trvName="ngModel">
+            <div *ngIf="trvName.errors && (trvName.dirty || trvName.touched)" class="alert alert-danger">
+                <div [hidden]="!trvName.errors.required">
+                    Name is required
+                </div>
+                <div [hidden]="!trvName.errors.Name.valid">
+                    Name is Not Valid!
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="idEmail">Email</label>
+            <input id="idEmail" name="email" type="email" class="form-control" required email [(ngModel)]="Ausers.email" #trvEmail="ngModel">
+            <div *ngIf="trvEmail.errors && (trvEmail.dirty || trvEmail.touched)" class="alert alert-danger">
+                <div [hidden]="!trvEmail.errors.required">
+                    Email is required
+                </div>
+                <div [hidden]="!trvEmail.errors.email">
+                    Email is Not valid! Example:abc@gmail.com
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="idPhone">Phone</label>
+            <input id="idPhone" name="phone" type="text" class="form-control" required [(ngModel)]="Ausers.phone" #trvPhone="ngModel">
+        </div>
+        <div class="form-group">
+            <h2>Address</h2>
+            <label for="idStreet">Street</label>
+            <input id="idStreet" name="street" type="text" class="form-control" required [(ngModel)]="Ausers.address.street" #trvStreet="ngModel">
+        </div>
+        <div class="form-group">
+            <label for="idCity">City</label>
+            <input id="idCity" name="city" type="text" class="form-control" required [(ngModel)]="Ausers.address.city" #trvCity="ngModel">
+        </div>
+        <div class="form-group">
+            <label for="idZipCode">ZipCode</label>
+            <input id="idZipCode" name="zipcode" type="text" class="form-control" required [(ngModel)]="Ausers.address.zipcode" #trvZipCode="ngModel">
+        </div>
+        <button [disabled]="!trvForm.valid"  class="btn btn-primary" (click)="SaveEdit()">Save</button>
+    </form>
+    </div>
+</div>
+
+<div *ngIf="HaidShowAddUser==false">
+<div *ngIf="EditUserForm==false">
+    <table class="table table-striped">
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+        <tr *ngFor="let item of arUsers;let i=index;">
+            <td>{{item.name}}</td>
+            <td>{{item.email}}</td>
+            <td><button class="glyphicon glyphicon-edit" (click)="EditUser(item)"></button></td>
+            <td><button  class="glyphicon glyphicon-remove" (click)="DeleteUser(i)"></button></td>
+        </tr>
+    </table>
+
+</div>
+</div>

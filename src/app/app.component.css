@@ -1,0 +1,11 @@
+
+
+li:hover{
+    background-color: grey;
+}
+li a{
+    color: white;
+}
+li a.home:hover{
+    color:turquoise;
+}
